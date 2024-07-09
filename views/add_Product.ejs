@@ -2,11 +2,29 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADICIONANDO PRODUTO</title>
+    <title>ADICIONAR PRODUTOS</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Adicionando Produto:</h1>
+    <div class="container">
+        <h1>Adicionar Produtos</h1>
+        <form action="/add_Product" method="post">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="quantidade">Quantidade:</label>
+            <input type="number" id="quantidade" name="quantidade" required>
+
+            <label for="preço">Preço:</label>
+            <input type="number" id="preço" name="preço" required>
+
+            <button>ADICIONAR</button>
+        </form>
+    </div>
+    
+
+
+    <script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

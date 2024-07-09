@@ -34,13 +34,32 @@ app.get('/add_Product', (req, res) => {
     res.render('add_Product')
 })
 
-app.post('/add_Product') // Configurar o Mysql
+app.post('/add_Product', (req, res) => {
+    const {name, quantity, price} = req.body
+
+    if (!name || !quantity || !price) {
+        return res.status(400).send('Todos os Campos são Obrigatóris!!!')
+    }
+    let sql = 'INSERT INTO products (nome, quantity, price) VALUES (?, ?, ?)'
+
+    db.query(sql, [name, quantity, price], (err, result) => {
+        if(err) {
+            throw err
+        }
+        console.log('Produto Adicionado')
+        res.redirect('/products')
+    })
+})
 
 app.get('/products', (req, res) => {
-    // Configurar Mysql
+    let sql = 'SELECT * FROM products'
 
-
-    res.render('list_Products') // Configurar Objeto
+    db.query(sql, (err, result) => {
+        if(err) {
+            throw err
+        }
+        res.render('list_Products', {products: result})
+    })
 })
 
 app.listen(port, () => {
