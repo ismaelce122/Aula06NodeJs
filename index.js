@@ -10,7 +10,7 @@ const db = mysql.createConnection(
         host: 'localhost',
         user: 'root',
         password: '',
-        database: 0
+        database: 'catalogo'
     }
 )
 db.connect((err) => {
