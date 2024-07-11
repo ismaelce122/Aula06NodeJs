@@ -31,7 +31,7 @@ app.use('/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist
 app.use('/js', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js')))
 
 app.get('/add_Product', (req, res) => {
-    res.render('add_Product')
+    res.render('add_Products')
 })
 
 app.post('/add_Product', (req, res) => {
@@ -46,7 +46,7 @@ app.post('/add_Product', (req, res) => {
         if(err) {
             throw err
         }
-        console.log('Produto Adicionado')
+        console.log('Produto Adicionado!!!')
         res.redirect('/products')
     })
 })
@@ -69,6 +69,29 @@ app.get('/delete_product/:id', (req, res) => {
             throw err
         }
         console.log('Produto Apagado!!!', result)
+        res.redirect('/products')
+    })
+})
+
+app.get('/edit_product/:id', (req, res) => {
+    const {id} = req.params
+    let sql = 'SELECT * FROM products WHERE id=?'
+    db.query(sql, [id], (err, result) => {
+        if(err) {
+            throw err
+        }
+        res.render('edit_Products', {prod: result[0]})
+    })
+})
+
+app.post('/edit_product/:id', (req, res) => {
+    const {id} = req.params
+    const {name, quantity, price} = req.body
+    let sql = 'UPDATE products SET nome=?, quantity=?, price=? WHERE id=?'
+    db.query(sql, [name, quantity, price, id], (err, result) => {
+        if(err) {
+            throw err
+        }
         res.redirect('/products')
     })
 })
