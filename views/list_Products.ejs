@@ -3,9 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>LISTA DE PRODUTOS</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 <body>
-    
+    <div class="container">
+        <h1 class="mt-5">Lista de Produtos:</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Quantidade</th>
+                    <th>Preço</th>
+                    <th>Ações</th>
+                </tr>
+                <tbody>
+                    <% products.forEach(product => { %>
+                        <tr>
+                            <td><%= product.nome %></td>
+                            <td><%= product.quantity %></td>
+                            <td><%= product.price %></td>
+                            <td>
+                                <a href="/edit_product/<%= product.id %>" class="btn btn-warning btn-sm">Editar</a>
+                                <a href="/delete_product/ <%= product.id %>" class="btn btn-danger btn-sm">Apagar</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </thead>
+        </table>
+    </div>
+    <script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

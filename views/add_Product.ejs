@@ -8,18 +8,18 @@
 </head>
 <body>
     <div class="container">
-        <h1>Adicionar Produtos</h1>
+        <h1>Adicionar Produtos:</h1>
         <form action="/add_Product" method="post">
             <label for="name">Nome:</label>
-            <input type="text" id="name" name="name" required>
+            <input class="form-control" type="text" id="name" name="name" required>
 
             <label for="quantidade">Quantidade:</label>
-            <input type="number" id="quantidade" name="quantidade" required>
+            <input class="form-control" type="number" id="quantity" name="quantity" required>
 
             <label for="preço">Preço:</label>
-            <input type="number" id="preço" name="preço" required>
+            <input class="form-control" type="number" id="price" name="price" required>
 
-            <button>ADICIONAR</button>
+            <button class="btn btn-primary mt-2">ADICIONAR</button>
         </form>
     </div>
     

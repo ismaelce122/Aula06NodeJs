@@ -10,7 +10,7 @@ const db = mysql.createConnection(
         host: 'localhost',
         user: 'root',
         password: '',
-        database: 'catalogo'
+        database: 'Catalogo'
     }
 )
 db.connect((err) => {
@@ -53,12 +53,23 @@ app.post('/add_Product', (req, res) => {
 
 app.get('/products', (req, res) => {
     let sql = 'SELECT * FROM products'
-
     db.query(sql, (err, result) => {
         if(err) {
             throw err
         }
         res.render('list_Products', {products: result})
+    })
+})
+
+app.get('/delete_product/:id', (req, res) => {
+    const {id} = req.params
+    let sql = 'DELETE FROM products WHERE id=?'
+    db.query(sql, [id], (err, result) => {
+        if(err) {
+            throw err
+        }
+        console.log('Produto Apagado!!!', result)
+        res.redirect('/products')
     })
 })
 
